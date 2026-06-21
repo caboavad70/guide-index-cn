@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 故事与玩法交汇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f2f0;
+            color: #2e3b3a;
+            line-height: 1.65;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 880px;
+            width: 100%;
+        }
+
+        /* Hero 开场短句 */
+        .hero {
+            margin-bottom: 3rem;
+            text-align: left;
+            padding: 0 0.25rem;
+        }
+
+        .hero .opening {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: #1f2d2b;
+            border-left: 4px solid #b19979;
+            padding-left: 1.25rem;
+        }
+
+        .hero .opening span {
+            font-weight: 600;
+            color: #826b50;
+        }
+
+        /* 承接段落 */
+        .bridge {
+            background: #ffffffdd;
+            backdrop-filter: blur(1px);
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e4e1db;
+            font-size: 1.05rem;
+            color: #3b4a47;
+        }
+
+        .bridge p {
+            margin-bottom: 1rem;
+        }
+
+        .bridge p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bridge a {
+            color: #826b50;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #c3b39d;
+            transition: border-color 0.2s;
+        }
+
+        .bridge a:hover {
+            border-bottom-style: solid;
+            border-color: #826b50;
+        }
+
+        /* 特点卡片区域 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid #e4e1db;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s, transform 0.1s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .feature-card .icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: #9b8974;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.45rem;
+            color: #2e3b3a;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #5b6b66;
+        }
+
+        /* 温和结尾 —— 故事感 */
+        .closing {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #e4e1db;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .closing p {
+            margin-bottom: 0.9rem;
+        }
+
+        .closing p:last-child {
+            margin-bottom: 0;
+        }
+
+        .closing .highlight {
+            background: #f4efe8;
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            color: #5c4b3a;
+            font-weight: 450;
+        }
+
+        /* FAQ 摘要 —— 轻量场景 */
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eae6df;
+        }
+
+        .faq-item {
+            flex: 1 1 180px;
+            background: #faf9f6;
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            border: 1px solid #eae6df;
+        }
+
+        .faq-item .q {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #4f5e5a;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item .a {
+            font-size: 0.88rem;
+            color: #6d7d78;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #8f9b96;
+            padding: 1.5rem 0 0.5rem;
+            border-top: 1px solid #e0dbd2;
+            margin-top: 1rem;
+        }
+
+        .footnote a {
+            color: #6d7d78;
+            text-decoration: none;
+            border-bottom: 1px dotted #c5bcb0;
+        }
+
+        .footnote a:hover {
+            border-bottom: 1px solid #6d7d78;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero .opening {
+                font-size: 1.7rem;
+                padding-left: 1rem;
+            }
+
+            .bridge {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .closing {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .faq-mini {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- 开场短句 -->
+        <div class="hero">
+            <div class="opening">
+                有些故事，从一次<span>游戏</span>开始。<br>
+                而更多故事，藏在每一个回合之外。
+            </div>
+        </div>
+
+        <!-- 承接段落 -->
+        <div class="bridge">
+            <p>
+                我们总是先被某个画面、一段旋律或一行对白打动，然后才发觉自己已经沉浸了很久。这种体验并不刻意，它像傍晚窗边漏进来的一束光——你知道它在那里，却说不清它何时出现。
+            </p>
+            <p>
+                在数字世界与日常生活的缝隙里，<a href="https://index-cn-aiyouxi.com.cn">爱游戏</a>试着成为那个让光停留的地方。它不追逐喧闹的热点，也不堆叠复杂的系统，而是把注意力放回玩法与叙事本身，让每一次打开都像翻开一本熟悉的书，却总能读到新的段落。
+            </p>
+        </div>
+
+        <!-- 特点列表（卡片式） -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="icon">◷</span>
+                <h3>慢节奏的探索</h3>
+                <p>不为追赶进度，不为打卡任务。允许你按照自己的步调，发现场景里的细节和隐藏的线索。</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">✎</span>
+                <h3>轻量叙事</h3>
+                <p>不依赖大段的过场动画，而是在界面、道具和对话中埋下零散的片段，拼出一幅属于你的故事地图。</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">⊞</span>
+                <h3>机制即表达</h3>
+                <p>操作本身就在说话。跳跃、选择、等待——这些最简单的动作，往往承载着最细微的情绪。</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">☁</span>
+                <h3>无压的社区氛围</h3>
+                <p>没有排行榜和竞争压力，交流以分享心得与二创为主。每个人都可以安静地玩，或者安静地离开。</p>
+            </div>
+        </div>
+
+        <!-- 温和结尾 + 场景 + FAQ 摘要 -->
+        <div class="closing">
+            <p>
+                你或许会在某个深夜，因为一项不起眼的机制而会心一笑；也可能在通关很久以后，依然记得某个场景里飘落的叶子。这些细小的闪光，正是我们一直想要保留的东西。
+            </p>
+            <p>
+                如今，<span class="highlight">爱游戏</span>更像一间安静的工作室与驿站——有人在这里寻找灵感，有人在这里整理回忆，也有人只是路过，却停下来喝了一杯茶。
+            </p>
+
+            <!-- 轻量 FAQ 摘要，增加场景感 -->
+            <div class="faq-mini">
+                <div class="faq-item">
+                    <div class="q">这里更新频繁吗？</div>
+                    <div class="a">不追求日更，更倾向于有质量的沉淀。内容随创作者的节奏自然生长。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">适合新手尝试吗？</div>
+                    <div class="a">没有复杂的前置要求，从任何一篇文章或一个工具页面开始都可以。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">如何找到更多玩法？</div>
+                    <div class="a">首页的索引和标签分类能帮你慢慢探索，就像翻一本目录友好的书。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 · 自然提及链接 -->
+        <div class="footnote">
+            <span>由 <a href="https://index-cn-aiyouxi.com.cn">爱游戏</a> 陪伴的角落 · 不赶路，感受路</span>
+        </div>
+
+    </div>
+</body>
+</html>
